@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html, body{
+    height: 100%; /* Ensures the body takes up the full viewport */
+    margin: 0;    /* Removes default margin */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', Arial;
+    user-select: none;
+
+}
+#calculator{
+    width: 400px;
+    height: 600px;
+    background-color: #202020;
+    border-radius: 20px;
+    padding:25px;
+}
+.display{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: hsl(0, 0%, 25%);
+    height: 80px;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+}
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 6px;
+    justify-content: flex-start;
+}
+
+.buttonContainer div {
+    width: 90px; /* Ensure regular buttons have a fixed width */
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.operations {
+    flex: 1 0 90px; /* Regular size for operation buttons */
+    background-color: #323232;
+}
+.operations:hover{
+    background-color: hsl(0, 0%, 23%);
+}
+.operations:active{
+    background-color: hsl(0, 0%, 30%);
+}
+
+.operationsBig {
+    flex: 2 0 180px; /* Double size for C and +/- */
+    background-color: hsl(0, 0%, 20%);
+}
+.operationsBig:hover{
+    background-color: hsl(0, 0%, 23%);
+}
+.operationsBig:active{
+    background-color: hsl(0, 0%, 30%);
+
+}
+
+.numbers {
+    flex: 1 0 90px; /* Regular size for number buttons */
+    background-color: #3b3b3b;
+}
+.numbers:hover{
+    background-color: hsl(0, 0%, 20%);
+}
+.numbers:active{
+    background-color: hsl(0, 0%, 15%);
+
+}
+
+#eq{
+    background-color: #595959;
+    color: #191919;
+}
+#eq:hover{
+    background-color: hsl(0, 0%, 30%);
+}
+#eq:active{
+    background-color: hsl(0, 0%, 35%);
+}
+
+#clear{
+    background-color: #ffa900;
+}
+#clear:hover{
+    background-color: hsl(40, 100%, 60%);
+}
+#clear:active{
+    background-color: hsl(40, 100%, 65%);
+}
