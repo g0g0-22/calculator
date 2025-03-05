@@ -2,6 +2,7 @@ let a = '';
 let b = '';
 let operator = '';
 let setA = true;
+let equalProduct = false;
 
 const display = document.querySelector(".display");
 const buttonContainer = document.querySelector(".buttonContainer");
@@ -9,6 +10,7 @@ const clearButton = document.getElementById("clear");
 const signChange = document.getElementById("sign");
 const equals = document.getElementById("eq");
 const dotOp = document.getElementById("dot");
+const backSpace = document.getElementById("backspace");
 
 function operate(){
     if(operator==='+'){
@@ -23,6 +25,7 @@ function operate(){
     }
     else if(operator==='*'){
         let temp = parseFloat(a)*parseFloat(b)
+        temp = Math.round(temp * 100) / 100
         a = temp.toString();
         display.textContent = a;
     }
@@ -42,14 +45,33 @@ function operate(){
     }
 }
 
-dotOp.addEventListener('click', ()=>{
-    if(setA){
-        a += '.';
-        display.textContent+='.';
+backSpace.addEventListener('click', ()=>{
+    let lastChar = display.textContent.slice(-1);
+    if(['+','-','*','/'].includes(lastChar)){
+        operator = '';
+    }
+    else if(!setA){
+        b = b.slice(0,-1);
     }
     else{
-        b +='.';
-        display.textContent+='.';
+        a = a.slice(0,-1);
+    }
+    display.textContent = display.textContent.slice(0,-1);
+
+});
+
+dotOp.addEventListener('click', ()=>{
+    if(setA){
+       if(!a.includes('.')){
+            a += '.';
+            display.textContent+='.';
+       }
+    }
+    else{
+        if(!b.includes('.')){
+            b +='.';
+            display.textContent+='.';
+        }
     }
 });
 
@@ -88,11 +110,15 @@ equals.addEventListener('click', ()=>{
     setA=true;
     console.log(a);
     console.log(b);
+    equalProduct = true;
 });
 
 buttonContainer.addEventListener("click", (event)=>{
     
     if(event.target.classList.contains("main")){
+        if(equalProduct)
+            equalProduct = false;
+
         if(operator !=='' && b===''){
             display.textContent = display.textContent.slice(0,-1); 
         }
@@ -111,6 +137,15 @@ buttonContainer.addEventListener("click", (event)=>{
     }
 
     if(event.target.classList.contains("numbers")){
+
+        if (equalProduct) {
+            display.textContent = ''; 
+            a = ''; 
+            setA = true; 
+            equalProduct = false;
+        }
+
+
         if(display.textContent==='Err.'){
             display.textContent = '';
         }
